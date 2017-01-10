@@ -15,8 +15,8 @@ topology_template:
           kind: onos
           view_url: /admin/onos/onosservice/$id$/
           no_container: true
-          rest_hostname: onos-cord
-          rest_port: 8182
+          rest_hostname: onos-xos-ctrl1
+          rest_port: 8181
           replaces: service_ONOS_CORD
 
     service#vtn:
@@ -25,19 +25,19 @@ topology_template:
           view_url: /admin/vtn/vtnservice/$id$/
           privateGatewayMac: 00:00:00:00:00:01
           localManagementIp: {{ management_network_ip }}
-          ovsdbPort: 6641
+          ovsdbPort: 6640
           sshUser: root
-          sshKeyFile: /root/node_key
+          sshKeyFile: /root/.ssh/id_rsa
           sshPort: 22
-          xosEndpoint: http://xos:8888/
+          xosEndpoint: http://xos1:8888/
           xosUser: padmin@vicci.org
           xosPassword: letmein
           replaces: service_vtn
           vtnAPIVersion: 2
-          controllerPort: onos-cord:6654
+          controllerPort: onos-xos-ctrl1:6653
 
 {% for node in groups["compute"] %}
-{% if 'ipv4' in hostvars[node]['ansible_fabric'] %}
+{% if 'ipv6' in hostvars[node]['ansible_fabric'] %}
 
     {{ hostvars[node]['ansible_hostname'] }}:
       type: tosca.nodes.Node
@@ -75,7 +75,7 @@ topology_template:
       type: tosca.nodes.Tag
       properties:
           name: dataPlaneIp
-          value: {{ ( hostvars[node]['ansible_fabric']['ipv4']['address'] ~ '/' ~ hostvars[node]['ansible_fabric']['ipv4']['netmask'] ) | ipaddr('cidr') }}
+          value: 10.168.0.253/24
       requirements:
           - target:
               node: {{ hostvars[node]['ansible_hostname'] }}

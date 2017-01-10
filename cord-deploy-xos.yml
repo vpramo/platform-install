@@ -14,11 +14,5 @@
 - name: XOS setup
   hosts: head
   roles:
-    - { role: xos-build, when: xos_container_rebuild }
     - xos-install
 
-- name: Start XOS
-  hosts: head
-  roles:
-    - xos-config
-    - xos-head-start
