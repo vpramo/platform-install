@@ -118,9 +118,6 @@
   become: yes
   command: docker pull {{ docker_registry }}/{{ item }}:{{ docker_tag }}
   with_items:
-    - xosproject/xos-base
-    - xosproject/xos-postgres
-    - xosproject/cord-app-build
     - redis
   tags:
     - skip_ansible_lint
@@ -128,9 +125,6 @@
 - name: Tag the images downloaded from the local registry
   command: docker tag {{ docker_registry }}/{{ item }}:{{ docker_tag }} {{ item }}:latest
   with_items:
-    - xosproject/xos-base
-    - xosproject/xos-postgres
-    - xosproject/cord-app-build
     - redis
   when: docker_registry_check|succeeded
 
