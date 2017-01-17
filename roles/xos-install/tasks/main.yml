@@ -51,14 +51,7 @@
 
 # ----  alternatively, check out repos from Internet ---
 
-- name: Clone service-profile repo
-  git:
-    repo={{ service_profile_repo_url }}
-    dest={{ service_profile_repo_dest }}
-    version={{ service_profile_repo_branch }}
-    force=yes
-  when:
-    True # orchestration.stat.exists == False # XXX
+
 
 # ----  install keys ----
 
