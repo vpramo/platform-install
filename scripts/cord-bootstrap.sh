@@ -15,7 +15,7 @@ function bootstrap() {
     sudo apt-get update
 #     sudo apt-get install -y software-properties-common
 #     sudo apt-add-repository -y ppa:ansible/ansible
-    sudo apt-get -y install python-dev libffi-dev python-pip libssl-dev sshpass python-netaddr
+    sudo apt-get -y install python-dev libffi-dev python-pip libssl-dev sshpass python-netaddr git
     sudo pip install ansible==2.2.2.0
   fi
 
@@ -42,8 +42,9 @@ function bootstrap() {
     fi
 
     mkdir $CORDDIR && cd $CORDDIR
-    repo init -u https://gerrit.opencord.org/manifest -b master
+    repo init -u https://github.com/vpramo/manifest -b criterion-cord-3.0
     repo sync
+    cp /root/.ssh/authorized_keys /root/.ssh/id_rsa.pub
 
     # check out gerrit branches using repo
     for gerrit_branch in ${GERRIT_BRANCHES[@]}; do

@@ -15,6 +15,7 @@
 
 # for docker, docker-compose
 - include: devel-tools-playbook.yml
+- include: deploy-elasticstack-playbook.yml
 
 # pull / build base XOS images
 - include: ../../orchestration/xos/pull-xos-playbook.yml
@@ -33,3 +34,4 @@
     - pull-xos-docker-images
 
 - include: launch-xos-playbook.yml
+- include: compute-node-refresh-playbook.yml

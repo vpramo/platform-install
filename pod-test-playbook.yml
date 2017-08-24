@@ -17,11 +17,6 @@
 #   roles:
 #    - platform-check
 
-- name: Create test client
-  hosts: head
-  become: yes
-  roles:
-    - maas-test-client-install
 
 - name: Create test subscriber
   hosts: head

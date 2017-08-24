@@ -6,3 +6,7 @@ cord_profile=rcord
 [head]
 localhost ansible_connection=local
 
+[compute]
+openstack-xos-cp1
+openstack-xos-cp2
+

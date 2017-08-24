@@ -123,6 +123,7 @@
     - Dockerfile.xos
     - xos-gui-extensions.yml
     - docker-compose.yml
+    - admin-openrc.sh
 
 - name: Create profile specific templated TOSCA config files
   template:

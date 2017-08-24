@@ -15,8 +15,8 @@ topology_template:
           kind: onos
           view_url: /admin/onos/onosservice/$id$/
           no_container: true
-          rest_hostname: onos-cord
-          rest_port: 8182
+          rest_hostname: onos-xos-ctrl1
+          rest_port: 8181
           replaces: service_ONOS_CORD
 
     service#vtn:
@@ -25,16 +25,16 @@ topology_template:
           view_url: /admin/vtn/vtnservice/$id$/
           privateGatewayMac: 00:00:00:00:00:01
           localManagementIp: {{ management_network_ip }}
-          ovsdbPort: 6641
+          ovsdbPort: 6640
           sshUser: root
-          sshKeyFile: /root/node_key
+          sshKeyFile: /root/.ssh/id_rsa
           sshPort: 22
-          xosEndpoint: http://xos:{{ xos_ui_port }}/
+          xosEndpoint: http://xos1:{{ xos_ui_port }}/
           xosUser: {{ xos_admin_user }}
           xosPassword: {{ xos_admin_pass }}
           replaces: service_vtn
           vtnAPIVersion: 2
-          controllerPort: onos-cord:6654
+          controllerPort: onos-xos-ctrl1:6653
 
     VTN_ONOS_app:
       type: tosca.nodes.ONOSVTNApp
@@ -46,7 +46,6 @@ topology_template:
               node: service#vtn
               relationship: tosca.relationships.UsedByService
       properties:
-          install_dependencies: http://mavenrepo:8080/repository/org/opencord/cord-config/{{ cord_app_version }}/cord-config-{{ cord_app_version }}.oar,http://mavenrepo:8080/repository/org/opencord/vtn/{{ cord_app_version }}/vtn-{{ cord_app_version }}.oar
           dependencies: org.onosproject.drivers, org.onosproject.drivers.ovsdb, org.onosproject.openflow-base, org.onosproject.ovsdb-base, org.onosproject.dhcp
           autogenerate: vtn-network-cfg
 

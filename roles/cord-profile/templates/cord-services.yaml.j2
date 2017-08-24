@@ -75,16 +75,16 @@ topology_template:
     addresses_vsg:
       type: tosca.nodes.AddressPool
       properties:
-        addresses: 10.6.1.128/26
-        gateway_ip: 10.6.1.129
-        gateway_mac: 02:42:0a:06:01:01
+        addresses: 10.168.0.0/24
+        gateway_ip: 10.168.0.1
+        gateway_mac: 02:42:0a:a8:00:01
 
     addresses_public:
       type: tosca.nodes.AddressPool
       properties:
-        addresses: 10.6.1.192/26
-        gateway_ip: 10.6.1.193
-        gateway_mac: 02:42:0a:06:01:01
+        addresses: 10.168.1.0/24
+        gateway_ip: 10.168.1.1
+        gateway_mac: 02:42:0a:a8:00:01
 
     label_vsg:
       type: tosca.nodes.NodeLabel
