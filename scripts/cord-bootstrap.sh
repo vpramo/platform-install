@@ -42,7 +42,9 @@ function bootstrap() {
     fi
 
     mkdir $CORDDIR && cd $CORDDIR
-    repo init -u https://github.com/vpramo/manifest -b criterion-cord-3.0
+    repo init -u https://gerrit.opencord.org/manifest -b cord-3.0
+    wget https://raw.githubusercontent.com/vpramo/manifest/criterion-cord-3.0/default.xml
+    cp default.xml .repo/manifest.xml
     repo sync
     cp /root/.ssh/authorized_keys /root/.ssh/id_rsa.pub
 
