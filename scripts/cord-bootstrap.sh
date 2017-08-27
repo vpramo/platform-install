@@ -54,7 +54,7 @@ function bootstrap() {
       repo download ${gerrit_branch/:/ }
     done
   fi
-
+  echo -n 'letmein' > /root/cord/build/platform-install/credentials/xosadmin@opencord.org
   if [ ! -x "/usr/bin/docker" ]
   then
     echo "Installing Devel Tools..."
