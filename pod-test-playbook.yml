@@ -37,11 +37,11 @@
   roles:
     - test-vsg
 
-- include: onboard-exampleservice-playbook.yml
+#- include: onboard-exampleservice-playbook.yml
 
-- name: Test ExampleService
-  hosts: head
-  become: no
-  roles:
-    - test-exampleservice
+#- name: Test ExampleService
+#  hosts: head
+#  become: no
+#  roles:
+#    - test-exampleservice
 

@@ -39,29 +39,4 @@
   tags:
     - skip_ansible_lint # running a sub job
 
-- name: start container
-  become: yes
-  lxd_container:
-    name: testclient
-    state: started
-
-- name: Make sure testclient has default route to vSG
-  become: yes
-  shell: lxc exec testclient -- route | grep default | grep "eth0.222.111"
-  register: result
-  until: result | success
-  retries: 20
-  delay: 30
-  tags:
-    - skip_ansible_lint # running a sub job
-
-- name: Test external connectivity in test client
-  become: yes
-  command: lxc exec testclient -- ping -c 3 8.8.8.8
-  register: pingtest
-  tags:
-    - skip_ansible_lint # running a sub job
-
-- name: Output from ping test
-  debug: var=pingtest.stdout_lines
 
