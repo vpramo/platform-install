@@ -2,17 +2,17 @@
 # vtn-refresh/defaults/main.yml
 
 - name: Refresh VTN state
-  shell: "sshpass -p 'karaf' ssh -p 8102 karaf@onos-cord {{ item }}"
+  shell: "sshpass -p 'karaf' ssh -p -o StrictHostKeyChecking=no 8101 karaf@onos-xos-ctrl1 {{ item }}"
   ignore_errors: yes
   with_items:
-    - "cordvtn-sync-neutron-states https://keystone.cord.lab:5000/v2.0 admin {{ keystone_admin_pass }}"
-    - "cordvtn-sync-xos-states http://xos:{{ xos_ui_port }} {{ xos_admin_user }} {{ xos_admin_pass }}"
+    - "cordvtn-sync-neutron-states http://openstack-xos-ctrl1:35358/v2.0 admin Chang3M3"
+    - "cordvtn-sync-xos-states http://xos1:{{ xos_ui_port }} {{ xos_admin_user }} {{ xos_admin_pass }}"
     - "cordvtn-purge-rules"
   tags:
     - skip_ansible_lint # running commands on ONOS
 
 - name: Reload compute nodes in VTN
-  shell: "sshpass -p 'karaf' ssh -p 8102 karaf@onos-cord cordvtn-node-init {{ hostvars[item]['ansible_hostname'] }}"
+  shell: "sshpass -p 'karaf' ssh -p -o StrictHostKeyChecking=no 8101 karaf@onos-xos-ctrl1 cordvtn-node-init {{ hostvars[item]['ansible_hostname'] }}"
   ignore_errors: yes
   with_items: "{{ groups['compute'] }}"
   tags:
