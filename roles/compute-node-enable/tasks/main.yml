@@ -1,6 +1,10 @@
 ---
 # compute-node-enable/tasks/main.yml
 
+- name: Pause some more time to stabilize containers
+  pause:
+    seconds: 100
+
 - name: Load TOSCA to add OpenStack compute nodes
   command: "python /opt/xos/tosca/run.py {{ xos_admin_user }} /opt/cord_profile/{{ item }}"
   with_items:
@@ -11,7 +15,7 @@
 
 - name: Pause to work around race in VTN or ONOS synchronizers
   pause:
-    seconds: 20
+    seconds: 100 
 
 - name: Load TOSCA to enable VTN on OpenStack compute nodes
   command: "python /opt/xos/tosca/run.py {{ xos_admin_user }} /opt/cord_profile/{{ item }}"
