@@ -34,4 +34,9 @@
     - pull-xos-docker-images
 
 - include: launch-xos-playbook.yml
+
+- name: Pause some more time to stabilize containers
+  pause:
+    seconds: 100
+
 - include: compute-node-refresh-playbook.yml
