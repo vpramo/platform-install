@@ -68,6 +68,8 @@ function bootstrap() {
   echo "*   Then 'cd ${CORDDIR}/build/platform-install' and start your CORD profile.  *"
   echo "*        Need help?  Check out the wiki at: https://wiki.opencord.org/        *"
   echo "*******************************************************************************"
+  docker pull xosproject/xos-base:cord-3.0
+  docker tag xosproject/xos-base:cord-3.0 xosproject/xos-base:candidate
 
 }
 
