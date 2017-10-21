@@ -5,7 +5,7 @@
   shell: "sshpass -p 'karaf' ssh -p 8101 -o StrictHostKeyChecking=no karaf@onos-xos-ctrl1 {{ item }}"
   ignore_errors: yes
   with_items:
-    - "cordvtn-sync-neutron-states http://openstack-xos-ctrl1:35358/v2.0 admin Chang3M3"
+    - "cordvtn-sync-neutron-states http://openstack-xos-ctrl1:35358/v2.0 admin admin Chang3M3"
     - "cordvtn-sync-xos-states http://xos1:{{ xos_ui_port }} {{ xos_admin_user }} {{ xos_admin_pass }}"
     - "cordvtn-purge-rules"
   tags:
